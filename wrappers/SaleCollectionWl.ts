@@ -9,7 +9,7 @@ export type NftCollectionConfig = {
     nextItemIndex: number;
     collectionContent: Cell;
     nftItemCode: Cell;
-    minPurchaseTon: bigint;
+    minPurchaseJetton: bigint;
     priceFactor: bigint;
     priceDevider: bigint;
     availableJettons: bigint;
@@ -48,7 +48,7 @@ export function nftCollectionConfigToCell(config: NftCollectionConfig): Cell {
         .storeUint(config.nextItemIndex, 64)
         .storeRef(config.collectionContent)
         .storeRef(config.nftItemCode)
-        .storeCoins(config.minPurchaseTon)
+        .storeCoins(config.minPurchaseJetton)
         .storeUint(config.priceFactor, 128)
         .storeUint(config.priceDevider, 128)
         .storeUint(config.firstUnlockTime, 32)
@@ -64,7 +64,7 @@ export function nftCollectionConfigToCell(config: NftCollectionConfig): Cell {
             .endCell()
         )
         .storeRef(
-            beginCell().endCell()
+            beginCell().storeUint(0, 1).storeRef(beginCell().endCell()).endCell()
         )
     .endCell();
 }

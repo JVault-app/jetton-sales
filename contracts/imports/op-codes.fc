@@ -12,7 +12,7 @@ const int op::withdraw_ton = 0x37726bdb;
 const int op::withdraw_jetton = 0x11c09682;
 const int op::get_info = 0x6;
 const int op::buy_wl = 0x90612494; 
-
+const int op::add_ref_links = 0x19352e00;
 
 ;; SBT
 const int op::transfer = 0x5fcc3d14;

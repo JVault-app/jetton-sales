@@ -235,8 +235,9 @@ global int storage::cycles_number;        ;; number of unlocks including initial
         ;;     unlock_time += storage::cycle_length;
         ;;     cycles_left -= 1;
         ;; }
-        available_percent += (percent_devider - storage::initial_unlock) * min(storage::cycles_number, (now() - storage::unlock_start) / storage::cycle_length) / storage::cycles_number;
-        
+        if (storage::cycles_number) {
+            available_percent += (percent_devider - storage::initial_unlock) * min(storage::cycles_number, (now() - storage::unlock_start) / storage::cycle_length) / storage::cycles_number;
+        }
         int available_jettons = ((percent_devider - available_percent < 10) ? 
                                  (storage::purchased_jettons - storage::withdrawed_jettons) :
                                  (storage::purchased_jettons * available_percent / percent_devider - storage::withdrawed_jettons));
